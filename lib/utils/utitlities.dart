@@ -2,6 +2,9 @@
 import 'dart:typed_data';
 import 'dart:html' as html;
 
+import 'package:naqra_web/models/card_type.dart';
+import 'package:naqra_web/models/contact_info_item.dart';
+import 'package:naqra_web/models/profile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utitlities {
@@ -13,13 +16,15 @@ static String truncate(String val, [int max = 26]) {
 
 
 
-void downloadVCard(String name, String phone, String email) {
+static void downloadVCard(Profile userProfile) {
+  final contactVCards = _contactListToVCard(userProfile.contacts);
+
   final vCard = '''
 BEGIN:VCARD
 VERSION:3.0
-FN:$name
-TEL;TYPE=CELL:$phone
-EMAIL:$email
+FN:${userProfile.name}
+TITLE:${userProfile.title}
+$contactVCards
 END:VCARD
 ''';
 
@@ -27,12 +32,36 @@ END:VCARD
   final blob = html.Blob([bytes]);
   final url = html.Url.createObjectUrlFromBlob(blob);
   final anchor = html.AnchorElement(href: url)
-    ..setAttribute("download", "$name.vcf")
+    ..setAttribute("download", "${userProfile.name}.vcf")
     ..click();
   html.Url.revokeObjectUrl(url);
 }
 
 
+static String _contactListToVCard(List<ContactInfo> contacts) {
+  final buffer = StringBuffer();
+
+  for (var contact in contacts) {
+    for (var item in contact.contactItems) {
+      final type = item.type.vCardType;
+      switch (contact.cardType) {
+        case CardType.phone:
+          buffer.writeln('TEL;TYPE=$type:${item.value}');
+          break;
+        case CardType.email:
+          buffer.writeln('EMAIL;TYPE=$type:${item.value}');
+          break;
+        case CardType.website:
+          buffer.writeln('URL:${item.value}');
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  return buffer.toString();
+}
 
 static Future<void> openExternalLink(String url) async {
   final Uri uri = Uri.parse(url);

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:naqra_web/adapters/profile_adapter.dart';
 import 'package:naqra_web/models/profile.dart';
 import 'package:naqra_web/pages/profile_skeleton.dart';
+import 'package:naqra_web/utils/utitlities.dart';
 import 'package:naqra_web/widgets/contact_card.dart';
 import 'package:naqra_web/widgets/map.dart';
 import 'package:naqra_web/widgets/skillCard.dart';
@@ -130,7 +131,7 @@ class _ViewContactScreenState extends State<ViewContactScreen> {
                             const SizedBox(height: 4),
                             Text(
                               // 'Creative UI / UX designer',,
-                              userProfile.position,
+                              userProfile.title,
                               style: textTheme.bodySmall?.copyWith(
                                 color: theme.hintColor,
                               ),
@@ -215,7 +216,9 @@ class _ViewContactScreenState extends State<ViewContactScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Utitlities.downloadVCard(userProfile);
+                  },
                   icon: Padding(
                     padding: const EdgeInsets.only(right: 6),
                     child: const Icon(Icons.contacts),
@@ -228,31 +231,7 @@ class _ViewContactScreenState extends State<ViewContactScreen> {
               const SizedBox(height: 16),
 
               ...userProfile.contacts.map((contact)=> ContactCard(cardType: contact.cardType, values: [...contact.contactItems.map((item)=> item.value)])),
-              // ContactCard(
-              //   cardType: CardType.phone,
-              //   values: ['+963991560726', '+963991560727', '+963991545520'],
-              // ),
-              // ContactCard(
-              //   cardType: CardType.instagram,
-              //   values: ['@it_yaman.kh', '@naqra_1'],
-              // ),
-              // ContactCard(
-              //   cardType: CardType.linkedin,
-              //   values: ['yaman_khatib'],
-              // ),
-              // ContactCard(
-              //   cardType: CardType.email,
-              //   values: ['yaman.khateeb@gmail.com'],
-              // ),
-
-              // ContactCard(
-              //   cardType: CardType.website,
-              //   values: ['https://yamanTechnology.io/home'],
-              // ),
-              // ContactCard(
-              //   cardType: CardType.resume,
-              //   values: ['Yaman_resume.pdf'],
-              // ),
+              
               const SizedBox(height: 24),
 
               Row(

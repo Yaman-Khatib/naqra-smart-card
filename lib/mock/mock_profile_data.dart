@@ -4,7 +4,7 @@ import 'package:naqra_web/models/profile.dart';
 
 final profile =  Profile(name: 'Yaman Alkhatib',
      bio: 'Building rust applications that are scalable\nCompleted over 15 desktop projects.'
-    , keywords: ['ASP.NET', 'EF Core', 'Flutter'], position: 'Full-Stack developer',
+    , keywords: ['ASP.NET', 'EF Core', 'Flutter'], title: 'Full-Stack developer',
      contacts: [
       ContactInfo(cardType: CardType.phone,
       contactItems: [

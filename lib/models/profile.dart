@@ -5,14 +5,14 @@ class Profile {
   final String name;
   final String bio;
   final List<String> keywords;
-  final String position;
+  final String title;
   final List<ContactInfo> contacts;
   final String locationUrl;
   Profile({
     required this.name,
     required this.bio,
     required this.keywords,
-    required this.position,
+    required this.title,
     required this.contacts,
     required this.locationUrl
   });
