@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'dart:html' as html;
 
 import 'package:naqra_web/models/card_type.dart';
+import 'package:naqra_web/models/contact_info.dart';
 import 'package:naqra_web/models/contact_info_item.dart';
 import 'package:naqra_web/models/profile.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -76,6 +77,36 @@ static Future<void> openExternalLink(String url) async {
   }
 }
 
+
+static Future<void> handleContactItemTap(ContactInfoItem item) async {
+  final value = item.value.trim();
+
+  Uri? uri;
+
+  switch (item.type) {
+    case ContactItemType.mobile:    
+    case ContactItemType.work:
+    case ContactItemType.home:
+      uri = Uri(scheme: 'tel', path: value);
+      break;
+
+    case ContactItemType.email:
+      uri = Uri(scheme: 'mailto', path: value);
+      break;
+
+    case ContactItemType.website:
+    case ContactItemType.other:
+      uri = Uri.parse(value.startsWith('http') ? value : 'https://$value');
+      break;
+  }
+
+  if (uri != null && await canLaunchUrl(uri)) {
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
+  } else {
+    // show error or fallback
+    print('Could not launch $uri');
+  }
+}
 
 
 }

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:naqra_web/models/card_type.dart';
+import 'package:naqra_web/models/contact_info.dart';
+import 'package:naqra_web/models/contact_info_item.dart';
+import 'package:naqra_web/models/profile.dart';
+import 'package:naqra_web/utils/utitlities.dart';
 
 class SingleItemCard extends StatelessWidget {
-  const SingleItemCard({required this.cardType,required this.value ,super.key});
+  const SingleItemCard({required this.contactInfo ,super.key});
   
-  final CardType cardType;
-  final String value;
+  // final CardType cardType;
+  // final String value;
+  final ContactInfo contactInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +19,7 @@ class SingleItemCard extends StatelessWidget {
       onTap: ()
       {
         //Open the selected item (website, mobile , dial) ....
+        Utitlities.handleContactItemTap(contactInfo.contactItems[0]);
       }
       ,
       child: Container(
@@ -32,17 +38,17 @@ class SingleItemCard extends StatelessWidget {
         ),
           child: Row(
           children: [
-            Icon(cardType.icon, color: theme.iconTheme.color, size: 22,),
+            Icon(contactInfo.cardType.icon, color: theme.iconTheme.color, size: 22,),
             const SizedBox(width: 12),
             Expanded(child: 
                Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    cardType.label,
+                    contactInfo.cardType.label,
                     style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                  Text( (value.length <= 30)?value : '${value.substring(0,26)}...' ,   style: theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),),
+                  Text( (contactInfo.contactItems[0].value.length <= 30)?contactInfo.contactItems[0].value : '${contactInfo.contactItems[0].value.substring(0,26)}...' ,   style: theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),),
 
                 ],
               ),

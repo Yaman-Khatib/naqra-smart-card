@@ -1,4 +1,5 @@
 import 'package:naqra_web/models/card_type.dart';
+import 'package:naqra_web/models/contact_info.dart';
 import 'package:naqra_web/models/contact_info_item.dart';
 import 'package:naqra_web/models/profile.dart';
 

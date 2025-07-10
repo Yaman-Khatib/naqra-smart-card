@@ -4,7 +4,7 @@ import 'package:naqra_web/adapters/profile_adapter.dart';
 import 'package:naqra_web/models/profile.dart';
 import 'package:naqra_web/pages/profile_skeleton.dart';
 import 'package:naqra_web/utils/utitlities.dart';
-import 'package:naqra_web/widgets/contact_card.dart';
+import 'package:naqra_web/widgets/cards/contact_card.dart';
 import 'package:naqra_web/widgets/map.dart';
 import 'package:naqra_web/widgets/skillCard.dart';
 
@@ -230,7 +230,8 @@ class _ViewContactScreenState extends State<ViewContactScreen> {
               // ),
               const SizedBox(height: 16),
 
-              ...userProfile.contacts.map((contact)=> ContactCard(cardType: contact.cardType, values: [...contact.contactItems.map((item)=> item.value)])),
+              ...userProfile.contacts.map((contact)=> ContactCard(contactInfo: contact)),
+              // ContactCard(cardType: contact.cardType, values: [...contact.contactItems.map((item)=> item.value)])),
               
               const SizedBox(height: 24),
 

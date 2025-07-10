@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:naqra_web/models/card_type.dart';
+import 'package:naqra_web/models/contact_info.dart';
 import 'package:naqra_web/utils/utitlities.dart';
 
 class MultiItemCard extends StatefulWidget {
   const MultiItemCard({
-    required this.cardType,
-    required this.values,
     super.key,
+    required this.contactInfo,
+    // required this.cardType,
+    // required this.values,
   });
 
-  final CardType cardType;
-  final List<String> values;
-
+  // final CardType cardType;
+  // final List<String> values;
+  final ContactInfo contactInfo;
   @override
   State<MultiItemCard> createState() => _MultiItemCardState();
 }
@@ -53,7 +55,7 @@ class _MultiItemCardState extends State<MultiItemCard> {
               children: [
                 /// Icon
                 Icon(
-                  widget.cardType.icon,
+                  widget.contactInfo.cardType.icon,
                   color: theme.iconTheme.color,
                   size: 22,
                 ),
@@ -65,14 +67,14 @@ class _MultiItemCardState extends State<MultiItemCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.cardType.label,
+                        widget.contactInfo.cardType.label,
                         style: theme.textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       if (!isExpanded)
                         Text(
-                          '${widget.values.length} ${widget.cardType.countLabel}',
+                          '${widget.contactInfo.contactItems.length} ${widget.contactInfo.cardType.countLabel}',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: theme.hintColor,
                           ),
@@ -96,8 +98,8 @@ class _MultiItemCardState extends State<MultiItemCard> {
             ),
             if (isExpanded) ...[
               const SizedBox(height: 12),
-              ...widget.values.map(
-                (value) => _buildContactItem(value, theme),
+              ...widget.contactInfo.contactItems.map(
+                (item) => _buildContactItem(item.value, theme),
               ),
             ],
           ],

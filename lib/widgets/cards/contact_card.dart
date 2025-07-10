@@ -2,29 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:naqra_web/models/card_type.dart';
 import 'package:naqra_web/widgets/cards/multi_items_card.dart';
 import 'package:naqra_web/widgets/cards/single_item_card.dart';
-
+import 'package:naqra_web/models/contact_info.dart';
 
 
 
 class ContactCard extends StatelessWidget {
   const ContactCard({
     super.key,
-    required this.cardType,
-    required this.values,
-    this.itemCountLabel
+    required this.contactInfo,
+    // required this.cardType,
+    // required this.values,
+    // this.itemCountLabel
   });
 
   // final IconData icon;
   // final String label;
-  final CardType cardType;
-  final List<String> values;
-  final String? itemCountLabel; 
-
+  // final CardType cardType;
+  // final List<String> values;
+  // final String? itemCountLabel; 
+  final ContactInfo contactInfo;
+  
 
   @override
   Widget build(BuildContext context) {
-
-    bool isMultiValuedCard = values.length > 1;
+    
+    bool isMultiValuedCard = contactInfo.contactItems.length > 1;
 
     final theme = Theme.of(context);
      bool isExpanded = false;
@@ -32,8 +34,8 @@ class ContactCard extends StatelessWidget {
     
 
     return isMultiValuedCard?
-      MultiItemCard(cardType:cardType , values: values,) :
-      SingleItemCard(cardType:cardType , value: values[0],);
+      MultiItemCard(contactInfo:contactInfo) :
+      SingleItemCard(contactInfo: contactInfo);
   
 }
 }
