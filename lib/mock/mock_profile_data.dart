@@ -20,9 +20,11 @@ final profile =  Profile(name: 'Yaman Alkhatib',
       ContactInfoItem(value: 'yaman.khateeb@outlook.com', type: ContactItemType.email)
       ]
        ),
-     ContactInfo(cardType: CardType.instagram, contactItems: [ContactInfoItem(value: '@yaman_khateeb.it', type: ContactItemType.other)]),
-     ContactInfo(cardType: CardType.facebook, contactItems: [ContactInfoItem(value: 'Yaman Alkhateeb', type: ContactItemType.other)]),
-     ContactInfo(cardType: CardType.resume, contactItems: [ContactInfoItem(value: 'Yaman_resume', type: ContactItemType.other)])
+     ContactInfo(cardType: CardType.instagram, contactItems: [ContactInfoItem(value: 'http://instagram.com/alshami_cafe', type: ContactItemType.other)]),
+     ContactInfo(cardType: CardType.facebook, contactItems: [ContactInfoItem(value: 'https://www.facebook.com/Alshami.sy.sy/', type: ContactItemType.other)]),
+     ContactInfo(cardType: CardType.website, contactItems: [ContactInfoItem(value: 'https://naqra-landing-git-main-yamans-projects-ce41fbc4.vercel.app?_vercel_share=QkIU7QfwL3ykfQbnOWE7dz0PuPnkx3Xr', type: ContactItemType.website),
+     ContactInfoItem(value: 'https://alshami-sy.sy/', type: ContactItemType.website)]),
+     ContactInfo(cardType: CardType.resume, contactItems: [ContactInfoItem(value: 'https://s2.q4cdn.com/175719177/files/doc_presentations/Placeholder-PDF.pdf', type: ContactItemType.other)])
      ],
      locationUrl: 'https://maps.app.goo.gl/vYEr7MDoDYTcN8CCA' );
  

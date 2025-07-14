@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:naqra_web/adapters/profile_adapter.dart';
 import 'package:naqra_web/models/profile.dart';
-import 'package:naqra_web/pages/profile_skeleton.dart';
+import 'package:naqra_web/screens/profile_skeleton.dart';
 import 'package:naqra_web/utils/utitlities.dart';
 import 'package:naqra_web/widgets/cards/contact_card.dart';
 import 'package:naqra_web/widgets/map.dart';

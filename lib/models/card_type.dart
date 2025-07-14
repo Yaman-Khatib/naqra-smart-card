@@ -9,13 +9,13 @@ enum CardType {
   facebook,
   website,
   instagram,
-  x,            // Twitter is now X
+  x,            // Twitter
   tiktok,
   linkedin,
-  resume,       // fallback for unknown
+  resume,       // The same as CV ..OK habib?!
   // whatsapp,
-  // telegram,
-  // youtube,  
+   telegram,
+   youtube,  
   snapchat,
   github,
   payment,
@@ -50,10 +50,10 @@ extension CardTypeProperties on CardType {
         return "Resume";
       // case CardType.whatsapp:
       //   return "WhatsApp";
-      // case CardType.telegram:
-      //   return "Telegram";
-      // case CardType.youtube:
-      //   return "YouTube";
+       case CardType.telegram:
+         return "Telegram";
+       case CardType.youtube:
+         return "YouTube";
       // case CardType.address:
       //   return "Address";
       // case CardType.maps:
@@ -96,9 +96,9 @@ extension CardTypeProperties on CardType {
   return FontAwesomeIcons.fileLines;
       // case CardType.whatsapp:
       //   return Icons.chat;
-      // case CardType.telegram:
-      //   return Icons.send;
-      // case CardType.youtube:
+       case CardType.telegram:
+         return Icons.send;
+       case CardType.youtube:
       //   return Icons.ondemand_video;
       // case CardType.address:
       //   return Icons.home;

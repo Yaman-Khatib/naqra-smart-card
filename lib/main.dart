@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
-
-
-import 'package:naqra_web/pages/view_contact_screen.dart';
-
-
-
-
-
+import 'package:naqra_web/screens/cutomize_profile_screen.dart';
+import 'package:naqra_web/screens/login-screens/login_screen.dart';
+import 'package:naqra_web/screens/login-screens/signup_screen.dart';
+import 'package:naqra_web/screens/login-screens/welcome_screen.dart';
+import 'package:naqra_web/screens/view_contact_screen.dart';
 
 class AppTheme {
-  static const primaryColor = Color(0xFF000000); // black for buttons etc.
+  static const primaryColor = Color(0xFF000000);
   static const backgroundColor = Color(0xffC5CACC);
   static const cardColor = Colors.white;
   static const textColor = Color(0xFF333333);
   static const mutedText = Colors.grey;
-  static const accentColor = Color(0xFF007AFF); // optional accent like links
+  static const accentColor = Color(0xFF007AFF);
 
   static ThemeData get lightTheme {
     return ThemeData(
-      scaffoldBackgroundColor: Color(0xFFE5E5E5), // Soft light grey
+      scaffoldBackgroundColor: Color(0xFFE5E5E5),
       primaryColor: primaryColor,
       colorScheme: ColorScheme.fromSwatch().copyWith(
         secondary: accentColor,
@@ -43,8 +40,7 @@ class AppTheme {
         padding: const EdgeInsets.symmetric(horizontal: 8),
       ),
       cardTheme: CardThemeData(
-        
-        color: Color(0xFFC5CACC),
+        color: backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         elevation: 2,
         margin: const EdgeInsets.symmetric(vertical: 6),
@@ -53,11 +49,27 @@ class AppTheme {
   }
 }
 
-
-
 void main() {
   print('started app');
-  runApp( MaterialApp(
-    theme: AppTheme.lightTheme,
-    home: ViewContactScreen()) );
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Naqra',
+      theme: AppTheme.lightTheme,
+      debugShowCheckedModeBanner: false,
+      initialRoute: 'editProfile',
+      routes: {
+        'ViewProfile': (context) => ViewContactScreen(),
+        'welcomeScreen': (context) => WelcomeScreen(),
+        'signup': (context) => SignUpScreen(),
+        'login': (context) => LoginScreen(),
+        'editProfile': (context)=>EditProfileScreen(initialFName: 'Yaman', initialLName: 'AlKhatib')
+        // Add more routes here when needed
+      },
+    );
+  }
 }

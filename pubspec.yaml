@@ -65,6 +65,9 @@ flutter:
       - assets/images/cover.jpg 
       - assets/images/avatar.jpg
       - assets/images/map.jpg
+      - assets/images/naqra.png
+      - assets/images/iphone-card.jpg
+      - assets/images/naqra_no_bg.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

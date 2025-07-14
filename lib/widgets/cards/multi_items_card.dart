@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:naqra_web/models/card_type.dart';
 import 'package:naqra_web/models/contact_info.dart';
+import 'package:naqra_web/models/contact_info_item.dart';
 import 'package:naqra_web/utils/utitlities.dart';
 
 class MultiItemCard extends StatefulWidget {
@@ -99,7 +100,7 @@ class _MultiItemCardState extends State<MultiItemCard> {
             if (isExpanded) ...[
               const SizedBox(height: 12),
               ...widget.contactInfo.contactItems.map(
-                (item) => _buildContactItem(item.value, theme),
+                (item) => _buildContactItem(item, theme),
               ),
             ],
           ],
@@ -109,14 +110,15 @@ class _MultiItemCardState extends State<MultiItemCard> {
   }
 }
 
-Widget _buildContactItem(String value, ThemeData theme) {
+Widget _buildContactItem(ContactInfoItem contactItem, ThemeData theme) {
   return Material(
     color: theme.cardColor,
     borderRadius: BorderRadius.circular(8),
     child: InkWell(
       borderRadius: BorderRadius.circular(8),
       onTap: () {
-        print('Contact item $value was pressed');
+        Utitlities.handleContactItemTap(contactItem);
+        // print('Contact item $value was pressed');
       },
       splashColor: theme.primaryColor.withValues(alpha: 0.2),
       highlightColor: theme.primaryColor.withValues(alpha: 0.1),
@@ -125,7 +127,7 @@ Widget _buildContactItem(String value, ThemeData theme) {
         child: Row(
           children:[ 
             Text(
-            Utitlities.truncate(value, 26),
+            Utitlities.truncate(contactItem.value, 26),
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.hintColor,
             ),
