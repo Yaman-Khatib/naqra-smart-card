@@ -34,10 +34,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
-  void dispose() {    
+  void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    
+
     _emailFocusNode.dispose();
     _passwordFocusNode.dispose();
 
@@ -45,22 +45,15 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   bool _isValidEmail(String email) {
-    final emailRegex = RegExp(
-      r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$",
-    );
+    final emailRegex = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
     return emailRegex.hasMatch(email.trim());
   }
 
-  InputDecoration _inputDecoration(
-    String label, {
-    String? errorText,
-  }) {
+  InputDecoration _inputDecoration(String label, {String? errorText}) {
     return InputDecoration(
       labelText: label,
       errorText: errorText,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: Colors.black87, width: 1.2),
@@ -95,75 +88,74 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   @override
-Widget build(BuildContext context) {
-  final theme = Theme.of(context);
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
 
-  return Scaffold(
-    backgroundColor: Colors.white,
-    body: Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Form(
-          key: _formKey,
-          autovalidateMode: AutovalidateMode.disabled, // <-- THIS LINE!
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Create your Naqra account',
-                style: theme.textTheme.titleLarge,
-              ),
-              const SizedBox(height: 30),
-
-
-              // Email
-              TextFormField(
-                focusNode: _emailFocusNode,
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: _inputDecoration('Email'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  if (!_isValidEmail(value)) {
-                    return 'Please enter a valid email address';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // Password
-              TextFormField(
-                focusNode: _passwordFocusNode,
-                controller: _passwordController,
-                obscureText: _obscurePassword,
-                decoration: _inputDecoration('Password').copyWith(
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscurePassword
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                      color: Colors.grey,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _obscurePassword = !_obscurePassword;
-                      });
-                    },
-                  ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Form(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.disabled, // <-- THIS LINE!
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Create your Naqra account',
+                  style: theme.textTheme.titleLarge,
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your password';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 24),
+                const SizedBox(height: 30),
 
-               /// SIGN UP Button (Gradient)
+                // Email
+                TextFormField(
+                  focusNode: _emailFocusNode,
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: _inputDecoration('Email'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    if (!_isValidEmail(value)) {
+                      return 'Please enter a valid email address';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+
+                // Password
+                TextFormField(
+                  focusNode: _passwordFocusNode,
+                  controller: _passwordController,
+                  obscureText: _obscurePassword,
+                  decoration: _inputDecoration('Password').copyWith(
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscurePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.grey,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscurePassword = !_obscurePassword;
+                        });
+                      },
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your password';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 24),
+
+                /// SIGN UP Button (Gradient)
                 SizedBox(
                   width: double.infinity,
                   child: Container(
@@ -186,16 +178,17 @@ Widget build(BuildContext context) {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                        onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _showSnackBar('Logged in successfully');
-                    } else {
-                      _showSnackBar(
-                        'Please enter the required fields.',
-                        isError: true,
-                      );
-                    }
-                  },
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _showSnackBar('Logged in successfully');
+                        } else {
+                          _showSnackBar(
+                            'Please enter the required fields.',
+                            isError: true,
+                          );
+                        }
+                        Navigator.pushNamed(context, 'editProfile');
+                      },
                       child: Center(
                         child: Text(
                           'Login',
@@ -207,20 +200,20 @@ Widget build(BuildContext context) {
                       ),
                     ),
                   ),
-                ),              
-              const SizedBox(height: 16),
+                ),
+                const SizedBox(height: 16),
 
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, 'signup');
-                },
-                child: const Text("Don't have an account yet? Sign up"),
-              ),
-            ],
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'signup');
+                  },
+                  child: const Text("Don't have an account yet? Sign up"),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

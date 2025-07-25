@@ -26,5 +26,6 @@ final profile =  Profile(name: 'Yaman Alkhatib',
      ContactInfoItem(value: 'https://alshami-sy.sy/', type: ContactItemType.website)]),
      ContactInfo(cardType: CardType.resume, contactItems: [ContactInfoItem(value: 'https://s2.q4cdn.com/175719177/files/doc_presentations/Placeholder-PDF.pdf', type: ContactItemType.other)])
      ],
-     locationUrl: 'https://maps.app.goo.gl/vYEr7MDoDYTcN8CCA' );
+    //  locationUrl: 'https://maps.app.goo.gl/vYEr7MDoDYTcN8CCA' 
+     );
  

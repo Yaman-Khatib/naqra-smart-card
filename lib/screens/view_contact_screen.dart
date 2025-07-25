@@ -254,7 +254,7 @@ class _ViewContactScreenState extends State<ViewContactScreen> {
                 ],
               ),
               const SizedBox(height: 8),
-              MapWidget(userProfile.locationUrl),
+              // TODO show map and add a tap to open in google maps widget.   MapWidget(userProfile.locationUrl),
               const SizedBox(height: 8),
               Center(
                 child: TextButton(

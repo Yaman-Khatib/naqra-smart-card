@@ -60,22 +60,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   bool _isValidEmail(String email) {
-    final emailRegex = RegExp(
-      r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$",
-    );
+    final emailRegex = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
     return emailRegex.hasMatch(email.trim());
   }
 
-  InputDecoration _inputDecoration(
-    String label, {
-    String? errorText,
-  }) {
+  InputDecoration _inputDecoration(String label, {String? errorText}) {
     return InputDecoration(
       labelText: label,
       errorText: errorText,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: Colors.black87, width: 1.2),
@@ -110,104 +103,104 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   @override
-Widget build(BuildContext context) {
-  final theme = Theme.of(context);
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
 
-  return Scaffold(
-    backgroundColor: Colors.white,
-    body: Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Form(
-          key: _formKey,
-          autovalidateMode: AutovalidateMode.disabled, // <-- THIS LINE!
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Create your Naqra account',
-                style: theme.textTheme.titleLarge,
-              ),
-              const SizedBox(height: 30),
-
-              // First Name
-              TextFormField(
-                focusNode: _fNameFocusNode,
-                controller: _fNameController,
-                keyboardType: TextInputType.name,
-                decoration: _inputDecoration('First name'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your first name';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // Last Name
-              TextFormField(
-                focusNode: _lNameFocusNode,
-                controller: _lNameController,
-                keyboardType: TextInputType.name,
-                decoration: _inputDecoration('Last name'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your last name';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // Email
-              TextFormField(
-                focusNode: _emailFocusNode,
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: _inputDecoration('Email'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  if (!_isValidEmail(value)) {
-                    return 'Please enter a valid email address';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // Password
-              TextFormField(
-                focusNode: _passwordFocusNode,
-                controller: _passwordController,
-                obscureText: _obscurePassword,
-                decoration: _inputDecoration('Password').copyWith(
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscurePassword
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                      color: Colors.grey,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _obscurePassword = !_obscurePassword;
-                      });
-                    },
-                  ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Form(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.disabled, // <-- THIS LINE!
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Create your Naqra account',
+                  style: theme.textTheme.titleLarge,
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your password';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 24),
+                const SizedBox(height: 30),
 
-               /// SIGN UP Button (Gradient)
+                // First Name
+                TextFormField(
+                  focusNode: _fNameFocusNode,
+                  controller: _fNameController,
+                  keyboardType: TextInputType.name,
+                  decoration: _inputDecoration('First name'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your first name';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+
+                // Last Name
+                TextFormField(
+                  focusNode: _lNameFocusNode,
+                  controller: _lNameController,
+                  keyboardType: TextInputType.name,
+                  decoration: _inputDecoration('Last name'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your last name';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+
+                // Email
+                TextFormField(
+                  focusNode: _emailFocusNode,
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: _inputDecoration('Email'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    if (!_isValidEmail(value)) {
+                      return 'Please enter a valid email address';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+
+                // Password
+                TextFormField(
+                  focusNode: _passwordFocusNode,
+                  controller: _passwordController,
+                  obscureText: _obscurePassword,
+                  decoration: _inputDecoration('Password').copyWith(
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscurePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.grey,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscurePassword = !_obscurePassword;
+                        });
+                      },
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your password';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 24),
+
+                /// SIGN UP Button (Gradient)
                 SizedBox(
                   width: double.infinity,
                   child: Container(
@@ -230,16 +223,17 @@ Widget build(BuildContext context) {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                        onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _showSnackBar('Account created successfully');
-                    } else {
-                      _showSnackBar(
-                        'Please fix errors before submitting.',
-                        isError: true,
-                      );
-                    }
-                  },
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _showSnackBar('Account created successfully');
+                        } else {
+                          _showSnackBar(
+                            'Please fix errors before submitting.',
+                            isError: true,
+                          );
+                        }
+                        Navigator.pushNamed(context, 'editProfile');
+                      },
                       child: Center(
                         child: Text(
                           'Sign Up',
@@ -251,20 +245,20 @@ Widget build(BuildContext context) {
                       ),
                     ),
                   ),
-                ),              
-              const SizedBox(height: 16),
+                ),
+                const SizedBox(height: 16),
 
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, 'login');
-                },
-                child: const Text("Already have an account? Log in"),
-              ),
-            ],
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'login');
+                  },
+                  child: const Text("Already have an account? Log in"),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

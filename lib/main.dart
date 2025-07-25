@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:naqra_web/screens/cutomize_profile_screen.dart';
 import 'package:naqra_web/screens/login-screens/login_screen.dart';
 import 'package:naqra_web/screens/login-screens/signup_screen.dart';
@@ -17,12 +18,18 @@ class AppTheme {
     return ThemeData(
       scaffoldBackgroundColor: Color(0xFFE5E5E5),
       primaryColor: primaryColor,
-      colorScheme: ColorScheme.fromSwatch().copyWith(
-        secondary: accentColor,
-      ),
+      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: accentColor),
       textTheme: const TextTheme(
-        titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),
-        titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: textColor),
+        titleLarge: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: textColor,
+        ),
+        titleMedium: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: textColor,
+        ),
         bodyMedium: TextStyle(fontSize: 14, color: textColor),
         bodySmall: TextStyle(fontSize: 12, color: mutedText),
       ),
@@ -30,7 +37,9 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: primaryColor,
           foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           textStyle: const TextStyle(fontSize: 14),
         ),
       ),
@@ -51,23 +60,29 @@ class AppTheme {
 
 void main() {
   print('started app');
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Naqra',
       theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
-      initialRoute: 'editProfile',
+      initialRoute: 'welcomeScreen',
       routes: {
         'ViewProfile': (context) => ViewContactScreen(),
         'welcomeScreen': (context) => WelcomeScreen(),
         'signup': (context) => SignUpScreen(),
         'login': (context) => LoginScreen(),
-        'editProfile': (context)=>EditProfileScreen(initialFName: 'Yaman', initialLName: 'AlKhatib')
+        'editProfile':
+            (context) => EditProfileScreen(
+              initialFName: 'Yaman',
+              initialLName: 'AlKhatib',
+            ),
         // Add more routes here when needed
       },
     );

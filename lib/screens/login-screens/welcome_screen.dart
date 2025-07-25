@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,22 +14,13 @@ class WelcomeScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-
                 /// Logo
-                Image.asset(
-                  'assets/images/naqra.png',
-                  height: 120,
-                ),
-
-                
+                Image.asset('assets/images/naqra.png', height: 120),
 
                 /// Tagline
                 Text(
                   'Your Digital Identity. Instantly Connected.',
-                  style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 14,
-                  ),
+                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
                   textAlign: TextAlign.center,
                 ),
 
@@ -81,10 +74,7 @@ class WelcomeScreen extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: Color(0xff181818),
-                        width: 1.5,
-                      ),
+                      border: Border.all(color: Color(0xff181818), width: 1.5),
                     ),
                     child: TextButton(
                       style: TextButton.styleFrom(
@@ -109,7 +99,6 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),

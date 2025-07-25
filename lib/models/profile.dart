@@ -8,13 +8,13 @@ class Profile {
   final List<String> keywords;
   final String title;
   final List<ContactInfo> contacts;
-  final String locationUrl;
+  
   Profile({
     required this.name,
     required this.bio,
     required this.keywords,
     required this.title,
     required this.contacts,
-    required this.locationUrl
+    
   });
 }
